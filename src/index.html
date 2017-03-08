@@ -7,8 +7,122 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+  <!-- Bootstrap Core Css -->
+  <link href="assets/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+  <!-- Waves Effect Css -->
+  <link href="assets/plugins/node-waves/waves.css" rel="stylesheet" />
+
+  <!-- Animation Css -->
+  <link href="assets/plugins/animate-css/animate.css" rel="stylesheet" />
+
+  <!-- Morris Chart Css-->
+  <link href="assets/plugins/morrisjs/morris.css" rel="stylesheet" />
+
+  <!-- Sweet Alert Css -->
+  <link href="assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+
+  <!-- Custom Css -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- Material Design cards -->
+  <link href="assets/plugins/jquery-material-cards/css/material-cards.css">
+
+  <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+  <link href="assets/css/themes/all-themes.css" rel="stylesheet" />
 </head>
-<body>
-  <cp-root>Loading...</cp-root>
+<body class="theme-deep-orange" style="background-color: #607D8B">
+  <cp-root>
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+      <div class="loader">
+        <div class="preloader">
+          <div class="spinner-layer pl-red">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+        <p>Please wait...</p>
+      </div>
+    </div>
+    <!-- #END# Page Loader -->
+  </cp-root>
+
+
+  <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCcs4bYrNVSzwWxR7puCL3onX4CcnxYiTo",
+      authDomain: "curator-portal.firebaseapp.com",
+      databaseURL: "https://curator-portal.firebaseio.com",
+      storageBucket: "curator-portal.appspot.com",
+      messagingSenderId: "84592978554"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <!-- Jquery Core Js -->
+  <script src="assets/plugins/jquery/jquery.min.js"></script>
+
+  <!-- CryptoJS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+
+  <!-- Bootstrap Core Js -->
+  <script src="assets/plugins/bootstrap/js/bootstrap.js"></script>
+
+  <!-- Select Plugin Js -->
+  <script src="assets/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+  <!-- Slimscroll Plugin Js -->
+  <script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+  <!-- Waves Effect Plugin Js -->
+  <script src="assets/plugins/node-waves/waves.js"></script>
+
+  <!-- Jquery CountTo Plugin Js -->
+  <script src="assets/plugins/jquery-countto/jquery.countTo.js"></script>
+
+  <!-- Select Plugin -->
+  <script src="assets/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+  <!-- JQuery Steps Plugin Js -->
+  <script src="assets/plugins/jquery-steps/jquery.steps.js"></script>
+
+  <!-- Sweet Alert Plugin Js -->
+  <script src="assets/plugins/sweetalert/sweetalert.min.js"></script>
+
+  <!-- Validate Plugin -->
+  <script src="assets/plugins/jquery-validation/jquery.validate.js"></script>
+  <script src="assets/plugins/jquery-validation/additional-methods.js"></script>
+
+  <!-- Material Design Cards -->
+  <script src="assets/plugins/jquery-material-cards/js/jquery.material-cards.js"></script>
+
+  <!-- Dropzone Css -->
+  <link href="assets/plugins/dropzone/dropzone.css" rel="stylesheet">
+
+  <!-- Bootstrap Select Css -->
+  <link href="assets/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
+  <!-- Dropzone Plugin Js -->
+  <script src="assets/plugins/dropzone/dropzone.js"></script>
+
+  <!-- Custom Js -->
+  <script src="assets/js/admin.js"></script>
+  <script src="assets/js/pages/examples/sign-in.js"></script>
+  <script src="assets/js/pages/examples/sign-up.js"></script>
+  <script src="assets/js/pages/forms/form-validation.js"></script>
+  <script src="assets/js/pages/index.js"></script>
+
+  <!-- Demo Js -->
+  <script src="assets/js/demo.js"></script>
 </body>
 </html>

@@ -1,0 +1,102 @@
+<section class="content bg-blue-grey">
+  <div class="container-fluid">
+    <div class="block-header">
+      <h3>DASHBOARD</h3>
+    </div>
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="header">
+            <h2>STATS</h2>
+          </div>
+          <div class="body">
+            <div class="row clearfix">
+              <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-deep-purple hover-expand-effect">
+                  <div class="icon">
+                    <i class="material-icons">store</i>
+                  </div>
+                  <div class="content">
+                    <div class="text">COMPLETED</div>
+                    <div class="number " data-from="0" [attr.data-to]="user?.ordersCompleted" data-speed="1000" data-fresh-interval="20">{{user?.ordersCompleted}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-amber hover-expand-effect">
+                  <div class="icon">
+                    <i class="material-icons">receipt</i>
+                  </div>
+                  <div class="content">
+                    <div class="text">PENDING ORDERS</div>
+                    <div class="number " data-from="0" [attr.data-to]="user?.ordersPending" data-speed="1000" data-fresh-interval="20">{{user?.ordersPending}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-light-green hover-expand-effect">
+                  <div class="icon">
+                    <i class="material-icons">favorite</i>
+                  </div>
+                  <div class="content">
+                    <div class="text">COLLECTIONS</div>
+                    <div class="number " data-from="0" [attr.data-to]="curationNo" data-speed="1000" data-fresh-interval="20">{{curationNo}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-orange hover-expand-effect">
+                  <div class="icon">
+                    <i class="material-icons">monetization_on</i>
+                  </div>
+                  <div class="content">
+                    <div class="text">TOTAL REVENUE</div>
+                    <div class="number sales-" data-from="0" [attr.data-to]="user?.revenueGenertated" data-speed="1000" data-fresh-interval="20">{{user?.revenueGenertated}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="header">
+            <h2>RECENT COLLECTIONS</h2>
+          </div>
+          <div class="body">
+            <div class="row clearfix">
+              <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" *ngFor="let collection of user?.curations | keys">
+                <div class="card">
+                  <div class="header bg-red">
+                    <h2>
+                      {{collection.value.curationTitle}}<small>{{collection.value.curationDescription}}</small>
+                    </h2>
+                    <ul class="header-dropdown m-r--5">
+                      <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                          <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                          <li><a href="javascript:void(0);">View Collection</a></li>
+                          <li><a href="javascript:void(0);">Edit Collection</a></li>
+                          <li><a href="javascript:void(0);">Delete Collection</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="body">
+                    <img [src]="collection.value.coverImage" class="img-responsive img-thumbnail" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

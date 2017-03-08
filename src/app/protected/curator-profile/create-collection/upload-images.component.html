@@ -1,0 +1,60 @@
+<section class="content bg-blue-grey">
+  <div class="container-fluid">
+    <div class="block-header">
+      <h2>Upload Images For the Collection</h2>
+    </div>
+  </div>
+  <div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+        <div class="header">
+          <h2>Product Images</h2>
+        </div>
+        <div class="body">
+          <div class="row">
+            <div class="col-sm-6">
+              <h4>Upload Cover Image</h4>
+            </div>
+            <div class="col-sm-offset-2 col-sm-4">
+              <label class="btn btn-block bg-deep-orange waves-effect" [ngClass]="{hidden: isCbuttonDisabled}" >
+                Upload Files
+                <input type="file" name="file" style="width: 0.1px; height: 0.1px;" (change)="uploadCoverImage($event)" [disabled]="isCbuttonDisabled">
+              </label>
+              <br/>
+              <br/>
+              <div class="progress">
+                <div class="progress-bar bg-amber progress-bar-striped active" role="progressbar" [ngStyle]="{width: coverImageProgress+'%'}">
+                  {{coverImageProgress}}% Completed<span class="sr-only">{{coverImageProgress}}% Complete (success)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <h4>Upload Product Images</h4>
+            </div>
+            <div class="col-sm-offset-2 col-sm-4">
+              <label class="btn btn-block bg-deep-orange waves-effect">
+                Upload Files
+                <input type="file" id="productImages" name="file" style="width: 0.1px; height: 0.1px;" multiple (change)="uploadProductImages($event)">
+              </label>
+              <br/>
+              <br/>
+              <div class="progress">
+                <div class="progress-bar bg-amber progress-bar-striped active" role="progressbar" [style.width]="productImagesProgress+'%'">
+                  {{productImagesProgress}}% Completed<span class="sr-only">{{productImagesProgress}}% Complete (success)</span>
+                </div>
+              </div>
+              <h6>Uploading {{ttlfiles}} Files</h6>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <a href="/" class="btn bg-amber btn-block waves-effect">Click here after uploading all the images(i.e. when you have seen all success popups)</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -5,21 +5,20 @@
 * various clothes for the upper part and the lower part of the body including
 * accessories like bracelets, hats, shoes etc.
 * */
-import {ArrayObject} from "./array-object";
+
+import {Product} from "./product";
 export class Curation {
   constructor(
     public curatorId:string,
-    public curationId:number,
-    public coverImage:string,
+    public curationId:string,
     public curationTitle: string,
+    public curationCoverImage:string,
     public curationDescription: string,
-    public productImages: any,
-    public ptags: any,
-    public price: number,
-    public shippingAvailibity: string,
-    public discount: number,
-    public storeLocation: string,
+    public curationProducts: Product[],
+    public curationStoreLocation: string,
+    public curationCity:string,
+    public curationState:string,
     public curationLikes: number,
-    public isActive:boolean
+    public curationIsActive:boolean
   ){}
 }

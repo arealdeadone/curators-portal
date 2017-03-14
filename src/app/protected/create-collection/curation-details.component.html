@@ -1,0 +1,141 @@
+<div class="card">
+  <div class="header">
+    <h2>
+      Collection Details
+      <small>Generic Information About the Collection</small>
+    </h2>
+  </div>
+  <div class="body">
+    <form novalidate #f="ngForm">
+      <div class="form-group">
+        <div class="form-line">
+          <label for="collectionTitle">
+            Collection Title<span class="text-danger"><sup><strong><em>*</em></strong></sup></span>
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            name="collectionTitle"
+            id="collectionTitle"
+            placeholder="Collection Title"
+            #collectionTitle
+            [ngModel]="curation?.curationTitle"
+            required
+            >
+        </div>
+      </div>
+      <br/>
+      <div class="form-group">
+        <div class="form-line">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <label>
+                Collection Cover Image<span class="text-danger"><sup><strong><em>*</em></strong></sup></span>
+              </label><br/>
+              <label for="collectionCoverImage" *ngIf="collectionTitle.value != ''" class="btn bg-deep-purple waves-effect">
+                Choose Collection Cover Image
+                <input
+                  [disabled]="collectionTitle.value == ''"
+                  type="file"
+                  id="collectionCoverImage"
+                  class="form-control"
+                  name="collectionCoverImage"
+                  style="opacity: 0; display: inline; width: 0.1px; height: 0.1px;"
+                  (change)="showImage($event)"
+                >
+              </label>
+              <button type="button" md-raised-button [color]="'warn'" *ngIf="collectionTitle.value != ''" (click)="uploadImage()">Upload Image</button>
+              <br/>
+              <br/>
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped active bg-amber"
+                     role="progressbar" [ngStyle]="{'width': progress+'%'}">
+                  {{progress + '%'}} Complete<span class="sr-only">{{progress + '%'}} Complete</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <h6>
+                Preview
+              </h6>
+              <img [src]="fileLocalRef" *ngIf="fileLocalRef" class="img-responsive img-thumbnail"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br/>
+      <div class="form-group">
+        <div class="form-line">
+          <label for="collectionDescription">Collection Description<span class="text-danger"><sup><strong><em>*</em></strong></sup></span></label>
+          <textarea
+            class="form-control no-resize"
+            rows="4"
+            id="collectionDescription"
+            name="collectionDescription"
+            placeholder="Collection Description"
+            [ngModel]="curation?.curationDescription"
+            required
+            ></textarea>
+        </div>
+       </div>
+      <br/>
+      <div class="form-group">
+        <div class="form-line">
+          <label for="retailOutletAddress">Retail Outlet Address <span class="text-danger"><sup><strong><em>*</em></strong></sup></span> </label>
+          <textarea
+            class="form-control no-resize"
+            rows="4"
+            id="retailOutletAddress"
+            name="retailOutletAddress"
+            placeholder="Retail Outlet Address"
+            [ngModel]="curation?.curationStoreLocation"
+            required
+            ></textarea>
+        </div>
+      </div>
+      <br/>
+      <div class="form-group">
+        <div class="form-line">
+          <label>City<span class="text-danger"><sup><strong><em>*</em></strong></sup></span></label><br/>
+          <md-input-container>
+            <input mdInput placeholder="Select City" [mdAutocomplete]="citySelect" [formControl]="cityCtrl" [ngModel]="curation?.curationCity">
+          </md-input-container>
+
+          <md-autocomplete #citySelect="mdAutocomplete">
+            <md-option *ngFor="let city of filteredCities| async" [value]="city">
+              {{ city }}
+            </md-option>
+          </md-autocomplete>
+        </div>
+      </div>
+      <br/>
+      <div class="form-group">
+        <div class="form-line">
+          <label>State<span class="text-danger"><sup><strong><em>*</em></strong></sup></span></label><br/>
+          <md-input-container>
+            <input mdInput placeholder="Select State" [mdAutocomplete]="stateSelect" [formControl]="stateCtrl" [ngModel]="curation?.curationState">
+          </md-input-container>
+
+          <md-autocomplete #stateSelect="mdAutocomplete">
+            <md-option *ngFor="let state of filteredStates | async" [value]="state">
+              {{ state }}
+            </md-option>
+          </md-autocomplete>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-xs-3">
+            <button md-raised-button [color]="'accent'" disabled>Previous</button>
+          </div>
+          <div class="col-xs-1"></div>
+          <div class="col-xs-3">
+            <button [color]="'accent'" md-raised-button type="button" (click)="NextSteps(f)" [disabled]="f.invalid || !isValid()">Next</button>
+          </div>
+        </div>
+      </div>
+      <input type="hidden" name="curatorId" [value]="currentUser" ngModel>
+    </form>
+    <small><sup class="text-danger"><strong><em>*</em></strong></sup> Required Fields</small>
+  </div>
+</div>

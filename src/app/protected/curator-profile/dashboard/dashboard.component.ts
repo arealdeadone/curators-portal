@@ -10,7 +10,7 @@ declare var $;
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit{
+export class DashboardComponent implements OnInit, OnDestroy{
 
   user:Curator;
   subscription:Subscription;
@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit{
 
   }
 
-  ngOnInit() {
+  refreshData(){
     this.subscription = this.dataService.getUserData().subscribe(
       (userData:Curator)  => {
         this.user = userData;
@@ -28,5 +28,25 @@ export class DashboardComponent implements OnInit{
 
       }
     );
+  }
+
+  ngOnInit() {
+    this.user = this.dataService.getUserDataOffline();
+    if(!this.user)
+    {
+      this.subscription = this.dataService.getCurator.subscribe(
+        event => {
+          this.user = event;
+          console.log(this.user.curations);
+          this.curationNo = Object.keys(this.user.curations).length;
+        }
+      )
+    } else
+      this.curationNo = Object.keys(this.user.curations).length;
+  }
+
+  ngOnDestroy(){
+    if(this.subscription)
+      this.subscription.unsubscribe();
   }
 }

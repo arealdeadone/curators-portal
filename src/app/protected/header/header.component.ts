@@ -10,7 +10,7 @@ import {Subscription} from "rxjs";
   templateUrl: 'header.component.html',
   styleUrls: ['header.component.css']
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit, OnDestroy{
   isOpenSearch = false;
   userData:Curator;
   private subscription:Subscription;
@@ -19,9 +19,14 @@ export class HeaderComponent implements OnInit{
     this.isOpenSearch =   !this.isOpenSearch;
   }
   ngOnInit() {
-    this.subscription = this.dataService.getUserData().subscribe(
-      (data:Curator) => this.userData = data
-    );
+    // this.subscription = this.dataService.getUserData().subscribe(
+    //   (data:Curator) => this.userData = data
+    // );
+    this.userData = this.dataService.getUserDataOffline();
+    if(!this.userData)
+      this.subscription = this.dataService.getCurator.subscribe(
+        event => this.userData = event
+      )
   }
 
   signOut(){
@@ -29,7 +34,8 @@ export class HeaderComponent implements OnInit{
     this.router.navigate(['']);
   }
 
-  // ngOnDestroy(){
-  //   this.subscription.unsubscribe();
-  // }
+  ngOnDestroy(){
+    if(this.subscription)
+      this.subscription.unsubscribe();
+  }
 }

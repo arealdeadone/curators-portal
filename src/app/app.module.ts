@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule, Http} from '@angular/http';
 
@@ -13,9 +13,16 @@ import {AuthGuard} from "./shared/auth.guard";
 import {DataService} from "./shared/data.service";
 import { DashboardComponent } from './protected/curator-profile/dashboard/dashboard.component';
 import { CuratorProfileHomeComponent } from './protected/curator-profile/curator-profile-home.component';
-import { CreateCollectionComponent } from './protected/curator-profile/create-collection/create-collection.component';
-import { UploadImagesComponent } from './protected/curator-profile/create-collection/upload-images.component';
 import { KeysPipe } from './shared/keys.pipe';
+import { NewCollectionHomeComponent } from './protected/create-collection/new-collection-home.component';
+import { CurationDetailsComponent } from './protected/create-collection/curation-details.component';
+import {MaterialModule} from "@angular/material";
+import { ProductDetailsComponent } from './protected/create-collection/product-details.component';
+import 'hammerjs';
+import { ViewCollectionComponent } from './protected/view-collection/view-collection.component';
+import { ComponentListComponent } from './protected/component-list/component-list.component';
+import { CollectionListComponent } from './protected/view-collection/collection-list/collection-list.component';
+//import {SelectModule} from "ng2-select";
 
 @NgModule({
   declarations: [
@@ -25,17 +32,23 @@ import { KeysPipe } from './shared/keys.pipe';
     SignupComponent,
     DashboardComponent,
     CuratorProfileHomeComponent,
-    CreateCollectionComponent,
-    UploadImagesComponent,
-    KeysPipe
+    KeysPipe,
+    NewCollectionHomeComponent,
+    CurationDetailsComponent,
+    ProductDetailsComponent,
+    ViewCollectionComponent,
+    ComponentListComponent,
+    CollectionListComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     routing,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [AuthService, DataService, AuthGuard],
   bootstrap: [AppComponent]
 })

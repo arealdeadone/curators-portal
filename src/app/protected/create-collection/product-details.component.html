@@ -1,0 +1,96 @@
+<div class="card">
+  <div class="header">
+    <h2>
+      Product Details
+      <small>
+        Detailed Description On Each Product | At Most 5 Products Per Collection | All Fields Are Required
+      </small>
+    </h2>
+  </div>
+  <div class="body">
+    <form [formGroup]="productForm">
+      <div class="form-group">
+          <md-input-container class="full-width">
+            <input type="text"
+                   mdInput
+                   formControlName="productTitle"
+                   placeholder="Product Title*"
+            >
+          </md-input-container>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-xs-6">
+            <label>Product Image<span class="text-danger"><sup><strong><em>*</em></strong></sup></span></label><br/>
+            <label for="productImage" class="bg-deep-purple waves-effect btn">
+              Choose Product Image
+              <input
+                type="file"
+                id="productImage"
+                class="form-control"
+                style="width: 0.1px; height: 0.1px; opacity: 0; display: inline;"
+                (change)="showPreview($event)"
+              >
+            </label>
+            <button type="button" md-raised-button (click)="uploadToFirebase()" [color]="'warn'">Upload</button>
+            <br/>
+            <br/>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped active bg-amber"
+                   role="progressbar" [ngStyle]="{'width': progress+'%'}">
+                {{progress + '%'}} Complete<span class="sr-only">{{progress + '%'}} Complete</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-6">
+            <label>Preview</label>
+            <img class="img-responsive img-thumbnail" [src]="fileLocalRef" *ngIf="fileLocalRef">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <md-input-container class="full-width">
+          <textarea
+                 mdInput
+                 rows="4"
+                 class="no-resize"
+                 formControlName="productDescription"
+                 placeholder="Product Description*"
+          ></textarea>
+        </md-input-container>
+      </div>
+      <div class="form-group">
+        <md-input-container class="full-width">
+          <input type="text"
+                 mdInput
+                 formControlName="productPrice"
+                 placeholder="Product Price*"
+                 pattern="^[\d]{0,7}$"
+          >
+        </md-input-container>
+      </div>
+      <div class="form-group">
+        <md-select placeholder="Product Shipping*" formControlName="productShipping" class="full-width">
+          <md-option value="Local" class="full-width">Local</md-option>
+          <md-option value="Global" class="full-width">Global</md-option>
+        </md-select>
+      </div>
+      <div class="form-group">
+        <button md-raised-button type="button" [color]="'accent'" (click)="addProduct()" class="btn-block" [disabled]="productForm.invalid || isImageUploaded()">
+          Add Product
+        </button>
+      </div>
+    </form>
+    <div class="row">
+      <div class="col-xs-4">
+        <button md-raised-button type="button" [color]="'primary'" (click)="goBack()" class="btn btn-block">Previous</button>
+      </div>
+      <div class="col-xs-4">
+        <button md-raised-button type="button" [color]="'primary'" (click)="storeCollection()" class="btn btn-block">Save Collection</button>
+      </div>
+      <div class="col-xs-4">
+        <small><sup class="text-danger"><strong><em>*</em></strong></sup> Required Fields</small>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,7 +7,13 @@
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
           <div class="header">
-            <h2>STATS</h2>
+            <h2>
+              STATS
+              <small>Some Useful Insights into Your Business</small>
+            </h2>
+            <ul class="header-dropdown m-r--5">
+              <li><a md-button (click)="refreshData()"><i class="material-icons">loop</i></a></li>
+            </ul>
           </div>
           <div class="body">
             <div class="row clearfix">
@@ -65,7 +71,13 @@
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
           <div class="header">
-            <h2>RECENT COLLECTIONS</h2>
+            <h2>
+              RECENT COLLECTIONS
+              <small>List of Recently Created Collections</small>
+            </h2>
+            <ul class="header-dropdown m-r--5">
+              <li><a md-button (click)="refreshData()"><i class="material-icons">loop</i></a></li>
+            </ul>
           </div>
           <div class="body">
             <div class="row clearfix">
@@ -89,7 +101,7 @@
                     </ul>
                   </div>
                   <div class="body">
-                    <img [src]="collection.value.coverImage" class="img-responsive img-thumbnail" />
+                    <img [src]="collection.value.curationCoverImage" class="img-responsive img-thumbnail" />
                   </div>
                 </div>
               </div>

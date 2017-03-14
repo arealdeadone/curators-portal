@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable, EventEmitter} from '@angular/core';
 import {Curator} from "./curator";
 import {Subject, Observable} from "rxjs";
 import {AuthService} from "./auth.service";
@@ -8,6 +8,8 @@ declare var firebase;
 @Injectable()
 export class DataService {
 
+  curator:Curator;
+  getCurator = new EventEmitter<Curator>();
   constructor(private authService:AuthService){ }
 
   storeUserData(curatorData:Curator): Observable<boolean> {
@@ -37,6 +39,20 @@ export class DataService {
     }
     return subject.asObservable();
   }
+
+  getUserDataOffline(){
+    if(!this.curator)
+    {
+      this.getUserData().subscribe(
+        (curator:Curator) => {
+          this.curator = curator;
+          this.getCurator.emit(this.curator);
+        }
+      );
+    }
+    return this.curator;
+  }
+
   getUniqueKey(refChild){
     const newKey = firebase.database().ref().child(refChild).push().key;
     return newKey;
@@ -45,20 +61,6 @@ export class DataService {
   createCuration(data:any) : Observable<boolean>{
     const subject = new Subject<boolean>();
     firebase.database().ref().update(data)
-      .catch(function (err) {
-        console.log(err);
-        subject.next(false);
-      })
-      .then(function () {
-        subject.next(true);
-      });
-    return subject.asObservable();
-  }
-
-  updateProductImageList(url:string, id:string) : Observable<boolean>{
-    let subject = new Subject<boolean>();
-    firebase.database().ref('/curations/'+id+'/productImages').push(url);
-    firebase.database().ref('/curators/'+this.authService.getCurrentUser().uid+'/curations/'+id+'/productImages').push(url)
       .catch(function (err) {
         console.log(err);
         subject.next(false);
